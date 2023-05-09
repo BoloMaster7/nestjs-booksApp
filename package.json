@@ -73,6 +73,9 @@
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
   },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
   "main": ".eslintrc.js",
   "directories": {
     "test": "test"
