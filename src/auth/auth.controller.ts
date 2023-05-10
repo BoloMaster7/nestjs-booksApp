@@ -4,12 +4,13 @@ import {
   Body,
   UseGuards,
   Request,
-  Response
+  Response,
+  Delete
  } from '@nestjs/common';
  import { RegisterDTO } from './dtos/register.dto';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './local-auth.guard';
-
+import { JwtAuthGuard } from './jwt-auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -29,4 +30,13 @@ export class AuthController {
       message: 'success',
     });
   }
+
+  @UseGuards(JwtAuthGuard)
+@Delete('logout')
+async logout(@Response() res) {
+  res.clearCookie('auth', { httpOnly: true });
+  res.send({
+    message: 'success',
+  });
+}
 }
