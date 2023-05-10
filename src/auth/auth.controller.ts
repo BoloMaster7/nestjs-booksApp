@@ -14,7 +14,7 @@ import { LocalAuthGuard } from './local-auth.guard';
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
-
+  @UseGuards(LocalAuthGuard)
   @Post('/register')
   public register(@Body() userData: RegisterDTO) {
     return this.authService.register(userData);
